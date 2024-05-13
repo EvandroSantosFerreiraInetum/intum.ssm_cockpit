@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "customers_scm",
+			"path": "../../customers_scm/customers_scm"
+		}
+	],
+	"settings": {}
+}

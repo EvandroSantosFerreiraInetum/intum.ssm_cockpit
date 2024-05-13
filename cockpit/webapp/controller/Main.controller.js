@@ -27,6 +27,11 @@ sap.ui.define([
                 }
                 // Se o link não estiver definido, não faz nada
             },
+
+            onIconTabHeaderSelect: function (oEvent) {
+                var oItem = oEvent.getParameter("item");
+                this.byId("idNavContainer").to(this.getView().createId(oItem.getKey()));
+            },
                     
         });
     });

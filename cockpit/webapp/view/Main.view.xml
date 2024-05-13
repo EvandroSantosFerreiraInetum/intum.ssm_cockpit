@@ -1,124 +1,291 @@
 <mvc:View controllerName="inetum.ssm.cockpit.controller.Main"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns:uxap="sap.uxap"
     xmlns:grid="sap.ui.layout.cssgrid"
     xmlns:f="sap.f"
     xmlns:core="sap.ui.core"
-    xmlns="sap.m" >
+    xmlns="sap.m" 
+    xmlns:tnt="sap.tnt">
 
-    <uxap:ObjectPageLayout id="idObjectPageLayout">               
-        <uxap:sections>
-            <uxap:ObjectPageSection id="idGeneralObjectPageSection" titleUppercase="false" title="SAM">                
-                <uxap:subSections>
-                    <uxap:ObjectPageSubSection id="idGeneralObjectPageSubSection" title="Cliente">
-                        <uxap:blocks>
-                            <f:GridList id="idGeneralSectionSetGridList" items="{/GeneralSectionSet}" >
-                                <f:customLayout>
-                                    <grid:GridResponsiveLayout id="id1GeneralGridResponsiveLayout">
-                                        <grid:layoutS>
-                                            <grid:GridSettings id="id1GeneralGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
-                                        </grid:layoutS>
-                                        <grid:layoutM>
-                                            <grid:GridSettings id="id2GeneralGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
-                                        </grid:layoutM>
-                                        <grid:layoutL>
-                                            <grid:GridSettings id="id3GeneralGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
-                                        </grid:layoutL>
-                                        <grid:layoutXL>
-                                            <grid:GridSettings id="id4GeneralGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
-                                        </grid:layoutXL>
-                                    </grid:GridResponsiveLayout>
-                                </f:customLayout>                                
-                            
-                                <f:GridListItem id="idGeneralGridListItem" type="Active"  press="onGridListItemPress">                                
-                                    <VBox id="idVBox" class="sapUiSmallMargin">
-                                        <layoutData>
-                                            <FlexItemData id="idGeneralFlexItemData" growFactor="1" shrinkFactor="0" />  
-                                        </layoutData>                                        
-                                        <Title id="idTitleGeneralTitle" text="{Title}" wrapping="true" />     
-                                        <Panel id="idGeneralPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
-                                        <core:Icon id="idGeneralIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
-                                        <Label id="idSubtitleGeneralLabel" text="{Subtitle}" wrapping="true" />                          
-                                    </VBox>                                    
-                                </f:GridListItem>
-                            </f:GridList>
-                        </uxap:blocks>            
-                    </uxap:ObjectPageSubSection>  
-                    
-                    <uxap:ObjectPageSubSection id="idAdmObjectPageSubSection" title="Processadores">
-                        <uxap:blocks>
-                            <f:GridList id="idUserAdmSectionSetGridList" items="{/UserAdmSectionSet}" >
-                            <f:customLayout>
-                                <grid:GridResponsiveLayout id="id1AdmGridResponsiveLayout">
-                                    <grid:layoutS>
-                                        <grid:GridSettings id="id1AdmGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
-                                    </grid:layoutS>
-                                    <grid:layoutM>
-                                        <grid:GridSettings id="id2AdmGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
-                                    </grid:layoutM>
-                                    <grid:layoutL>
-                                        <grid:GridSettings id="id3AdmGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
-                                    </grid:layoutL>
-                                    <grid:layoutXL>
-                                        <grid:GridSettings id="id4AdmGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
-                                    </grid:layoutXL>
-                                </grid:GridResponsiveLayout>
-                            </f:customLayout>                                
-                        
-                            <f:GridListItem id="idAdmGridListItem" type="Active"  press="onGridListItemPress">                                
-                                <VBox id="idAdmVBox" class="sapUiSmallMargin">
-                                    <layoutData>
-                                        <FlexItemData id="idAdmFlexItemData" growFactor="1" shrinkFactor="0" />  
-                                    </layoutData>                                        
-                                    <Title id="idTitleAdmTitle" text="{Title}" wrapping="true" />     
-                                    <Panel id="idAdmPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
-                                    <core:Icon id="idAdmIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
-                                    <Label id="idSubtitleAdmLabel" text="{Subtitle}" wrapping="true" />                          
-                                </VBox>                                    
-                            </f:GridListItem>
-                        </f:GridList>
-                        </uxap:blocks>                               
-                    </uxap:ObjectPageSubSection>                      
-                </uxap:subSections>
-            </uxap:ObjectPageSection>
+    <Page id="idPage" title="Solution Cockpit" >
+        <tnt:ToolPage id="idToolPage">
+            <tnt:header>
+                <tnt:ToolHeader id="idToolHeader">
+                    <IconTabHeader id="idIconTabHeader" select="onIconTabHeaderSelect">
+                        <items>
+                            <IconTabFilter id="idSAMIconTabFilter" text="SAM" key="idSAMPage"> </IconTabFilter>
+                            <IconTabFilter id="idVARIconTabFilter" text="VAR" key="idVARPage"> </IconTabFilter>
+                            <IconTabFilter id="idSDFIconTabFilter" text="SDF" key="idSDFPage"> </IconTabFilter>
+                            <IconTabFilter id="idSSCIconTabFilter" text="SSC" key="idSSCPage"> </IconTabFilter>
+                            <IconTabFilter id="idSSMIconTabFilter" text="SSM" key="idSSMPage"> </IconTabFilter>
+                        </items>
+                    </IconTabHeader>        
+                </tnt:ToolHeader>                
+            </tnt:header>
+            <tnt:mainContents>
+                <NavContainer id="idNavContainer">
+                    <pages>
+                        <Page id="idSAMPage">       
+                            <Panel id="idSAMCustomerPanel" headerText="{i18n>customer}">   
+                                <f:GridList id="idSamCUSTOMERSetGridList" items="{/SAM_CUSTOMERSet}" >
+                                    <f:customLayout>
+                                        <grid:GridResponsiveLayout id="id1SAMGridResponsiveLayout">
+                                            <grid:layoutS>
+                                                <grid:GridSettings id="id1SAMCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
+                                            </grid:layoutS>
+                                            <grid:layoutM>
+                                                <grid:GridSettings id="id2SAMCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
+                                            </grid:layoutM>
+                                            <grid:layoutL>
+                                                <grid:GridSettings id="id3SAMCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
+                                            </grid:layoutL>
+                                            <grid:layoutXL>
+                                                <grid:GridSettings id="id4SAMCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
+                                            </grid:layoutXL>
+                                        </grid:GridResponsiveLayout>
+                                    </f:customLayout>                                                                
+                                    <f:GridListItem id="idSAMCustomerGridListItem" type="Active"  press="onGridListItemPress">                                
+                                        <VBox id="idVBox" class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData id="idSAMCustomerFlexItemData" growFactor="1" shrinkFactor="0" />  
+                                            </layoutData>                                        
+                                            <Title id="idTitleSAMCustomerTitle" text="{Title}" wrapping="true" />     
+                                            <Panel id="id2SAMCustomerPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
+                                            <core:Icon id="idSAMCustomerIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
+                                            <Label id="idSubtitleSAMCustomerLabel" text="{Subtitle}" wrapping="true" />                          
+                                        </VBox>                                    
+                                    </f:GridListItem>
+                                </f:GridList>      
+                            </Panel>     
+                            <Panel id="idSAMProPanel" headerText="{i18n>processor}">   
+                                <f:GridList id="idSamPROCESSORSSetGridList" items="{/SAM_PROCESSORSSet}" >
+                                    <f:customLayout>
+                                        <grid:GridResponsiveLayout id="id1SAMProGridResponsiveLayout">
+                                            <grid:layoutS>
+                                                <grid:GridSettings id="id1SAMProGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
+                                            </grid:layoutS>
+                                            <grid:layoutM>
+                                                <grid:GridSettings id="id2SAMProGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
+                                            </grid:layoutM>
+                                            <grid:layoutL>
+                                                <grid:GridSettings id="id3SAMProGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
+                                            </grid:layoutL>
+                                            <grid:layoutXL>
+                                                <grid:GridSettings id="id4SAMProGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
+                                            </grid:layoutXL>
+                                        </grid:GridResponsiveLayout>
+                                    </f:customLayout>                                                                
+                                    <f:GridListItem id="idSAMProGridListItem" type="Active"  press="onGridListItemPress">                                
+                                        <VBox id="idSAMProVBox" class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData id="idSAMProFlexItemData" growFactor="1" shrinkFactor="0" />  
+                                            </layoutData>                                        
+                                            <Title id="idTitleSAMProTitle" text="{Title}" wrapping="true" />     
+                                            <Panel id="id2SAMProPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
+                                            <core:Icon id="idSAMProIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
+                                            <Label id="idSubtitleSAMProLabel" text="{Subtitle}" wrapping="true" />                          
+                                        </VBox>                                    
+                                    </f:GridListItem>
+                                </f:GridList>                                
+                            </Panel> 
+                        </Page>
+                        <Page id="idVARPage">
+                           <Panel id="idVarCustomerPanel" headerText="{i18n>customer}">
+                                <f:GridList id="idVarCUSTOMERSetGridList" items="{/VAR_CUSTOMERSet}">
+                                    <f:customLayout>
+                                        <grid:GridResponsiveLayout id="id1DataGridResponsiveLayout">
+                                            <grid:layoutS>
+                                                <grid:GridSettings id="id1DataGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
+                                            </grid:layoutS>
+                                            <grid:layoutM>
+                                                <grid:GridSettings id="id2DataGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
+                                            </grid:layoutM>
+                                            <grid:layoutL>
+                                                <grid:GridSettings id="id3DataGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
+                                            </grid:layoutL>
+                                            <grid:layoutXL>
+                                                <grid:GridSettings id="id4DataGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
+                                            </grid:layoutXL>
+                                        </grid:GridResponsiveLayout>
+                                    </f:customLayout>                                                                
+                                    <f:GridListItem id="idDataGridListItem" type="Active"  press="onGridListItemPress">                                
+                                        <VBox id="idDataVBox" class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData id="idDataFlexItemData" growFactor="1" shrinkFactor="0" />  
+                                            </layoutData>                                        
+                                            <Title id="idTitleDataTitle" text="{Title}" wrapping="true" />     
+                                            <Panel id="idDataPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
+                                            <core:Icon id="idDataIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
+                                            <Label id="idSubtitleDataLabel" text="{Subtitle}" wrapping="true" />                          
+                                        </VBox>                                    
+                                    </f:GridListItem>
+                                </f:GridList>
+                           </Panel> 
+                        </Page>
+                        <Page id="idSDFPage">
+                            <Panel id="idSDFCustomerPanel" headerText="{i18n>customer}">   
+                                <f:GridList id="idSdfCUSTOMERSetGridList" items="{/SDF_CUSTOMERSet}" >
+                                    <f:customLayout>
+                                        <grid:GridResponsiveLayout id="idSDFCustomerGridResponsiveLayout">
+                                            <grid:layoutS>
+                                                <grid:GridSettings id="id1SDFCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
+                                            </grid:layoutS>
+                                            <grid:layoutM>
+                                                <grid:GridSettings id="id2SDFCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
+                                            </grid:layoutM>
+                                            <grid:layoutL>
+                                                <grid:GridSettings id="id3SDFCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
+                                            </grid:layoutL>
+                                            <grid:layoutXL>
+                                                <grid:GridSettings id="id4SDFCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
+                                            </grid:layoutXL>
+                                        </grid:GridResponsiveLayout>
+                                    </f:customLayout>                                                                
+                                    <f:GridListItem id="idSDFCustomerGridListItem" type="Active"  press="onGridListItemPress">                                
+                                        <VBox id="idSDFCustomerVBox" class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData id="idSDFCustomerFlexItemData" growFactor="1" shrinkFactor="0" />  
+                                            </layoutData>                                        
+                                            <Title id="idTitleSDFCustomerTitle" text="{Title}" wrapping="true" />     
+                                            <Panel id="id2SDFCustomerPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
+                                            <core:Icon id="idSDFCustomerIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
+                                            <Label id="idSubtitleSDFCustomerLabel" text="{Subtitle}" wrapping="true" />                          
+                                        </VBox>                                    
+                                    </f:GridListItem>
+                                </f:GridList>      
+                            </Panel>     
+                            <Panel id="idSDFProcessorPanel" headerText="{i18n>processor}">   
+                                <f:GridList id="idSdfPROCESSORSSetGridList" items="{/SDF_PROCESSORSSet}" >
+                                    <f:customLayout>
+                                        <grid:GridResponsiveLayout id="idSDFProcessorGridResponsiveLayout" >
+                                            <grid:layoutS>
+                                                <grid:GridSettings id="id2SDFProcessorGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
+                                            </grid:layoutS>
+                                            <grid:layoutM>
+                                                <grid:GridSettings id="id3SDFProcessorGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
+                                            </grid:layoutM>
+                                            <grid:layoutL>
+                                                <grid:GridSettings id="id4SDFProcessorGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
+                                            </grid:layoutL>
+                                            <grid:layoutXL>
+                                                <grid:GridSettings id="id5SDFProcessorGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
+                                            </grid:layoutXL>
+                                        </grid:GridResponsiveLayout>
+                                    </f:customLayout>                                                                
+                                    <f:GridListItem id="idSDFProcessorGridListItem" type="Active"  press="onGridListItemPress">                                
+                                        <VBox id="idSDFProcessorVBox" class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData id="idSDFProcessorFlexItemData" growFactor="1" shrinkFactor="0" />  
+                                            </layoutData>                                        
+                                            <Title id="idTitleSDFProcessorTitle" text="{Title}" wrapping="true" />     
+                                            <Panel id="id2SDFProcessorPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
+                                            <core:Icon id="idSDFProcessorIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
+                                            <Label id="idSubtitleSDFProcessorLabel" text="{Subtitle}" wrapping="true" />                          
+                                        </VBox>                                    
+                                    </f:GridListItem>
+                                </f:GridList>                                
+                            </Panel>                             
+                        </Page>
 
-             <uxap:ObjectPageSection id="idDataObjectPageSection" titleUppercase="false" title="SDF">     
-                <uxap:ObjectPageSubSection id="idDataObjectPageSubSection">
-                    <uxap:blocks>
-                        <f:GridList id="idDataManegerSectionSetGridList" items="{/DataManegerSectionSet}" >
-                        <f:customLayout>
-                            <grid:GridResponsiveLayout id="id1DataGridResponsiveLayout">
-                                <grid:layoutS>
-                                    <grid:GridSettings id="id1DataGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
-                                </grid:layoutS>
-                                <grid:layoutM>
-                                    <grid:GridSettings id="id2DataGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
-                                </grid:layoutM>
-                                <grid:layoutL>
-                                    <grid:GridSettings id="id3DataGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
-                                </grid:layoutL>
-                                <grid:layoutXL>
-                                    <grid:GridSettings id="id4DataGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
-                                </grid:layoutXL>
-                            </grid:GridResponsiveLayout>
-                        </f:customLayout>                                
-                    
-                        <f:GridListItem id="idDataGridListItem" type="Active"  press="onGridListItemPress">                                
-                            <VBox id="idDataVBox" class="sapUiSmallMargin">
-                                <layoutData>
-                                    <FlexItemData id="idDataFlexItemData" growFactor="1" shrinkFactor="0" />  
-                                </layoutData>                                        
-                                <Title id="idTitleDataTitle" text="{Title}" wrapping="true" />     
-                                <Panel id="idDataPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
-                                <core:Icon id="idDataIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
-                                <Label id="idSubtitleDataLabel" text="{Subtitle}" wrapping="true" />                          
-                            </VBox>                                    
-                        </f:GridListItem>
-                    </f:GridList>
-                    </uxap:blocks>                               
-                </uxap:ObjectPageSubSection>  
-            </uxap:ObjectPageSection>            
-        </uxap:sections>
-   </uxap:ObjectPageLayout>
- 
+                        <Page id="idSSCPage">
+                            <Panel id="idSSCCustomerPanel" headerText="{i18n>customer}">   
+                                <f:GridList id="idSscCUSTOMERSetGridList" items="{/SSC_CUSTOMERSet}" >
+                                    <f:customLayout>
+                                        <grid:GridResponsiveLayout id="id1SSCCustomerGridResponsiveLayout">
+                                            <grid:layoutS>
+                                                <grid:GridSettings id="id2SSCCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
+                                            </grid:layoutS>
+                                            <grid:layoutM>
+                                                <grid:GridSettings id="id3SSCCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
+                                            </grid:layoutM>
+                                            <grid:layoutL>
+                                                <grid:GridSettings id="id4SSCCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
+                                            </grid:layoutL>
+                                            <grid:layoutXL>
+                                                <grid:GridSettings id="id5SSCCustomerGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
+                                            </grid:layoutXL>
+                                        </grid:GridResponsiveLayout>
+                                    </f:customLayout>                                                                
+                                    <f:GridListItem id="idSSCCustomerGridListItem" type="Active"  press="onGridListItemPress">                                
+                                        <VBox id="idSSCCustomerVBox" class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData id="idSSCCustomerFlexItemData" growFactor="1" shrinkFactor="0" />  
+                                            </layoutData>                                        
+                                            <Title id="idTitleSSCCustomerTitle" text="{Title}" wrapping="true" />     
+                                            <Panel id="id2SSCCustomerPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
+                                            <core:Icon id="idSSCCustomerIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
+                                            <Label id="idSubtitleSSCCustomerLabel" text="{Subtitle}" wrapping="true" />                          
+                                        </VBox>                                    
+                                    </f:GridListItem>
+                                </f:GridList>      
+                            </Panel>     
+                            <Panel id="idSSCProcessorPanel" headerText="{i18n>processor}">   
+                                <f:GridList id="idSscPROCESSORSSetGridList" items="{/SSC_PROCESSORSSet}" >
+                                    <f:customLayout>
+                                        <grid:GridResponsiveLayout id="idSSCProcessorGridResponsiveLayout">
+                                            <grid:layoutS>
+                                                <grid:GridSettings id="id2SSCProcessorGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
+                                            </grid:layoutS>
+                                            <grid:layoutM>
+                                                <grid:GridSettings id="id3SSCProcessorGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
+                                            </grid:layoutM>
+                                            <grid:layoutL>
+                                                <grid:GridSettings id="id4SSCProcessorGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
+                                            </grid:layoutL>
+                                            <grid:layoutXL>
+                                                <grid:GridSettings id="id5SSCProcessorGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
+                                            </grid:layoutXL>
+                                        </grid:GridResponsiveLayout>
+                                    </f:customLayout>                                                                
+                                    <f:GridListItem id="idSSCProcessorGridListItem" type="Active"  press="onGridListItemPress">                                
+                                        <VBox id="idSSCProcessorVBox" class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData id="idSSCProcessorFlexItemData" growFactor="1" shrinkFactor="0" />  
+                                            </layoutData>                                        
+                                            <Title id="idTitleSSCProcessorTitle" text="{Title}" wrapping="true" />     
+                                            <Panel id="id2SSCProcessorPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
+                                            <core:Icon id="idSSCProcessorIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
+                                            <Label id="idSubtitleSSCProcessorLabel" text="{Subtitle}" wrapping="true" />                          
+                                        </VBox>                                    
+                                    </f:GridListItem>
+                                </f:GridList>                                
+                            </Panel>                             
+                        </Page>
+                        <Page id="idSSMPage">
+                            <Panel id="idSSMPanel">   
+                                <f:GridList id="idSsmALLSetGridList" items="{/SSM_ALLSet}" >
+                                    <f:customLayout>
+                                        <grid:GridResponsiveLayout id="id1SSMGridResponsiveLayout" >
+                                            <grid:layoutS>
+                                                <grid:GridSettings id="id2SSMGridSettings" gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem" />
+                                            </grid:layoutS>
+                                            <grid:layoutM>
+                                                <grid:GridSettings id="id3SSMGridSettings" gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem" />
+                                            </grid:layoutM>
+                                            <grid:layoutL>
+                                                <grid:GridSettings id="id4SSMGridSettings" gridTemplateColumns="repeat(auto-fit, 16rem)" gridGap="0.75rem 0.75rem" />
+                                            </grid:layoutL>
+                                            <grid:layoutXL>
+                                                <grid:GridSettings id="id5SSMGridSettings" gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="1rem 1rem" />
+                                            </grid:layoutXL>
+                                        </grid:GridResponsiveLayout>
+                                    </f:customLayout>                                                                
+                                    <f:GridListItem id="idGridListItem" type="Active"  press="onGridListItemPress">                                
+                                        <VBox id="idSSMVBox" class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData id="idSSMFlexItemData" growFactor="1" shrinkFactor="0" />  
+                                            </layoutData>                                        
+                                            <Title id="idTitleSSMTitle" text="{Title}" wrapping="true" />     
+                                            <Panel id="id2SSMPanel" backgroundDesign="Transparent" ></Panel>  <!-- Apenas para preencher area -->                                                                    
+                                            <core:Icon id="idSSMIcon" src="{Icon}" size="2.625rem" color="#00AA9A" class="sapUiTinyMarginBottom" />
+                                            <Label id="idSubtitleSSMLabel" text="{Subtitle}" wrapping="true" />                          
+                                        </VBox>                                    
+                                    </f:GridListItem>
+                                </f:GridList>                                
+                            </Panel>  
+                        </Page>                        
+                    </pages>
+                </NavContainer>
+            </tnt:mainContents>
+        </tnt:ToolPage>  
+    </Page > 
 </mvc:View>
